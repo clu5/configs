@@ -7,7 +7,7 @@ if ! command -v vim >/dev/null 2>&1; then
 fi
 
 # Make undodir
-if [ ! -d ~/.vim/pack/plugins/start ]; then
+if [ ! -d ~/.vim/undodir ]; then
     mkdir -p ~/.vim/undodir
 fi
 
