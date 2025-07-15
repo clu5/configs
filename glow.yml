@@ -1,0 +1,14 @@
+# Glow configuration for better terminal and tmux compatibility
+# This config ensures glow works well in limited color environments
+
+# Use notty style for better compatibility with tmux and limited color terminals
+style: "notty"
+
+# Set reasonable width for terminal display
+width: 80
+
+# Disable pager for direct output
+pager: false
+
+# Preserve newlines in output
+preserve-new-lines: false

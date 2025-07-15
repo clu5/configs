@@ -82,6 +82,9 @@ alias ta='tmux attach'
 alias tl='tmux list-sessions'
 alias tn='tmux new-session'
 
+# Glow markdown viewer (optimized for tmux)
+alias glow='glow --style notty'
+
 # =============================================================================
 # FUNCTIONS
 # =============================================================================

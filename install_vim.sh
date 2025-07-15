@@ -113,23 +113,31 @@ fi
 
 # Install glow markdown viewer
 log_info "Installing glow markdown viewer..."
-if command -v go >/dev/null 2>&1; then
-    go install github.com/charmbracelet/glow@latest
-    log_info "Successfully installed glow via go"
+if command -v snap >/dev/null 2>&1; then
+    sudo snap install glow
+    log_info "Successfully installed glow via snap"
 elif command -v brew >/dev/null 2>&1; then
     brew install glow
     log_info "Successfully installed glow via brew"
 else
-    log_warn "Neither go nor brew found. Installing glow via curl..."
-    if command -v curl >/dev/null 2>&1; then
-        curl -fsSL https://github.com/charmbracelet/glow/releases/latest/download/glow_linux_x86_64.tar.gz | tar xz -C /tmp
-        mkdir -p ~/.local/bin
-        mv /tmp/glow ~/.local/bin/
-        log_info "Successfully installed glow to ~/.local/bin/"
-        log_info "Make sure ~/.local/bin is in your PATH"
-    else
-        log_warn "Could not install glow automatically. Please install manually from https://github.com/charmbracelet/glow"
+    log_warn "Could not install glow automatically. Please install manually:"
+    log_info "Visit: https://github.com/charmbracelet/glow"
+fi
+
+# Install glow configuration
+GLOW_CONFIG_SOURCE="$SCRIPT_DIR/glow.yml"
+if [ -f "$GLOW_CONFIG_SOURCE" ]; then
+    GLOW_CONFIG_DIR=~/.config/glow
+    mkdir -p "$GLOW_CONFIG_DIR"
+    if [ -f "$GLOW_CONFIG_DIR/glow.yml" ]; then
+        BACKUP_FILE="$GLOW_CONFIG_DIR/glow.yml.backup.$(date +%Y%m%d_%H%M%S)"
+        cp "$GLOW_CONFIG_DIR/glow.yml" "$BACKUP_FILE"
+        log_info "Backed up existing glow config to $BACKUP_FILE"
     fi
+    cp "$GLOW_CONFIG_SOURCE" "$GLOW_CONFIG_DIR/glow.yml"
+    log_info "Installed glow configuration for tmux compatibility"
+else
+    log_warn "glow.yml not found in script directory"
 fi
 
 # Install vimrc configuration

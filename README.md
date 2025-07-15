@@ -80,7 +80,30 @@ If you encounter issues:
 ## File Structure
 
 ```
-├── install_vim.sh    # Installation script
-├── vimrc            # Vim configuration file
-└── README.md        # This file
+├── bashrc                   # Bash configuration with vi mode and enhanced features
+├── config.fish             # Fish shell configuration with vi key bindings
+├── glow.yml                # Glow markdown viewer configuration for tmux compatibility
+├── install_bashrc_config.sh # Install script for bash configuration
+├── install_fish_config.sh  # Install script for fish configuration
+├── install_glow_config.sh  # Install script for glow configuration
+├── install_tmux_config.sh  # Install script for tmux configuration
+├── install_vim.sh          # Complete vim setup with plugins and glow
+├── README.md               # This file
+├── tmux.conf               # Tmux configuration with enhanced features
+└── vimrc                   # Vim configuration file with comprehensive settings
 ```
+
+## Additional Tools
+
+### Glow Markdown Viewer
+The repository includes configuration for [glow](https://github.com/charmbracelet/glow), a terminal markdown viewer that's optimized for tmux compatibility:
+
+```bash
+chmod +x install_glow_config.sh
+./install_glow_config.sh
+```
+
+Features:
+- Optimized for limited color terminals and tmux
+- 80-column width for readable formatting
+- No pager for direct output
