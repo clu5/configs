@@ -124,6 +124,9 @@ else
     log_info "Visit: https://github.com/charmbracelet/glow"
 fi
 
+# Get script directory first
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # Install glow configuration
 GLOW_CONFIG_SOURCE="$SCRIPT_DIR/glow.yml"
 if [ -f "$GLOW_CONFIG_SOURCE" ]; then
@@ -141,7 +144,6 @@ else
 fi
 
 # Install vimrc configuration
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 VIMRC_SOURCE="$SCRIPT_DIR/vimrc"
 
 if [ ! -f "$VIMRC_SOURCE" ]; then
